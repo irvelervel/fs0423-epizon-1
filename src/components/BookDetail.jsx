@@ -2,6 +2,10 @@ import { Col, Row, Button } from 'react-bootstrap'
 import { FaShoppingCart } from 'react-icons/fa'
 import { useDispatch } from 'react-redux'
 
+// REGOLE DEGLI HOOKS
+// 1) SOLO COMPONENTI A FUNZIONE
+// 2) SEMPRE PRIMA DEL RETURN FUORI DA FUNZIONI LOOPS E IF/ELSE
+
 const BookDetail = ({ bookSelected }) => {
   const dispatch = useDispatch() // salvo in una variabile la funzione dispatch, che userò per "dispatchare" azioni
 

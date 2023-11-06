@@ -28,6 +28,30 @@ const mainReducer = (
         },
       }
 
+    case 'REMOVE_FROM_CART':
+      // in OGNI case dobbiamo tornare il NUOVO stato dell'applicativo! dobbiamo tornare un oggetto!
+      return {
+        ...state,
+        cart: {
+          ...state.cart,
+          content: state.cart.content.filter(
+            (book, i) => i !== action.payload
+            // ogni libro è libero di rimanere a patto che la sua posizione nell'array
+            // sia DIVERSA dalla posizione del libro che intendo eliminare
+          ),
+
+          //   content: [
+          //     ...state.cart.content.slice(0, action.payload),
+          //     ...state.cart.content.slice(
+          //       action.payload + 1,
+          //       state.cart.content.length // omettibile, slice andrebbe fino alla fine dell'array da solo...
+          //     ),
+          //   ],
+
+          // action.payload è la posizione dell'elemento da eliminare nell'array content
+        },
+      }
+
     default:
       return state
   }
