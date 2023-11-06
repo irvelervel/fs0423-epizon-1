@@ -14,4 +14,23 @@ const mainReducer = (
   action // l'ultima azione "dispatchata"
 ) => {
   // ora descriviamo la logica di funzionamento del reducer
+  // dobbiamo dichiarare COME il reducer calcolerà il nuovo stato dell'app!
+  switch (action.type) {
+    case 'ADD_TO_CART':
+      // in OGNI case dobbiamo tornare il NUOVO stato dell'applicativo! dobbiamo tornare un oggetto!
+      // state.cart.content.push // ESPLOSIONI! perchè? perchè abbiamo modificato state...
+      return {
+        ...state, // mi porto dentro il NUOVO stato tutto il contenuto del vecchio
+        cart: {
+          ...state.cart, // non voglio perdere niente per strada, neanche eventuali altre proprietà di cart
+          content: [...state.cart.content, action.payload],
+          //   content: state.cart.content.concat(action.payload),
+        },
+      }
+
+    default:
+      return state
+  }
 }
+
+export default mainReducer

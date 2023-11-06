@@ -1,7 +1,10 @@
 import { Col, Row, Button } from 'react-bootstrap'
 import { FaShoppingCart } from 'react-icons/fa'
+import { useDispatch } from 'react-redux'
 
 const BookDetail = ({ bookSelected }) => {
+  const dispatch = useDispatch() // salvo in una variabile la funzione dispatch, che userò per "dispatchare" azioni
+
   return (
     <div className="mt-3 mb-4 mb-lg-0">
       {bookSelected ? (
@@ -30,7 +33,16 @@ const BookDetail = ({ bookSelected }) => {
                 <span className="fw-bold">Price:</span>&nbsp;
                 {bookSelected.price}$
               </p>
-              <Button className="d-flex align-items-center" onClick={() => {}}>
+              <Button
+                className="d-flex align-items-center"
+                onClick={() => {
+                  dispatch({
+                    type: 'ADD_TO_CART', // il tipo è a vostra scelta, ricordatevelo e dategli un nome "parlante"!
+                    payload: bookSelected, // aggiungo anche come payload il libro da mettere nel carrello, altrimenti
+                    // come farebbe il reducer a capire quale dei libri è quello giusto? :(
+                  })
+                }}
+              >
                 <span className="me-2">AGGIUNGI AL</span>
                 <FaShoppingCart />
               </Button>
